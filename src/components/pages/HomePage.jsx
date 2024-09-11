@@ -23,6 +23,7 @@ export const HomePage = () => {
           <Header />
           <Carousel />
           <BlogPost1 articles={articles} />
+          <div></div>
           <End />
         </div>
       </div>
