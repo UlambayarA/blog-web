@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const ShineTurshilt = () => {
+export default function ShineTurshilt() {
   const [articles, setArticles] = useState([]);
 
   const fetchData = () => {
@@ -25,4 +25,4 @@ export const ShineTurshilt = () => {
       <Footer />
     </div>
   );
-};
+}
