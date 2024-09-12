@@ -1,10 +1,32 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export const Carousel = () => {
   const [articles, setArticles] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleLeft = () => {
+    setCurrentIndex((currentIndex) => {
+      if (currentIndex === 0) {
+        return articles.length - 1;
+      } else {
+        return currentIndex - 1;
+      }
+    });
+  };
+
+  const handleRight = () => {
+    setCurrentIndex((currentIndex) => {
+      if (currentIndex === articles.length - 1) {
+        return 0;
+      } else {
+        return currentIndex + 1;
+      }
+    });
+  };
 
   const fetchData = () => {
-    fetch("https://dev.to/api/articles?per_page=1")
+    fetch("https://dev.to/api/articles?per_page=5")
       .then((response) => response.json())
       .then((data) => setArticles(data));
   };
@@ -12,29 +34,26 @@ export const Carousel = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
   return (
-    <div className="flex justify-center ">
-      {articles.map((article) => {
-        return (
-          <div
-            className="w-[1216px] h-[600px] p-[11px] flex  flex-col justify-end rounded-[12px] " 
-            style={{
-              backgroundImage: `url(${article?.cover_image})`,
-            }}
-          >
-            {article.title}
-            <div className="flex flex-col   gap-[16px] bg-white w-[598px]  p-[40px] rounded-[12px]">
-              <div className="bg-[#4B6BFB] w-[120px] text-white rounded-[6px] p-[10px]">
-                {article?.tag_list[0]}
-              </div>
-              <div className="text-[36px] font-semibold h-[172px] overflow-hidden ">
-                {article?.description}
-              </div>
-              <div className="text-[16px] text-[#97989F] ">August 20, 2022</div>
-            </div>
+    <div className="w-full  h- flex  ">
+      <div className="w-full ">
+        <Link href={`/${articles[currentIndex]?.id}`}>
+          <div className="flex flex-col justify-end rounded-[12px] p-[11px]"
+          style={{backgroundImage:`url(${articles[currentIndex]?.cover_image})`, height:600 ,}} >
+            <h3 className="text-medium  bg-white rounded-[12px] w-[598px] h-[252px] p-[40px]">{articles[currentIndex]?.title}</h3>
+            {/* <img
+              src={articles[currentIndex]?.cover_image}
+              className=" w-full"
+            /> */}
           </div>
-        );
-      })}
+        </Link>
+
+        <div className="flex gap-4 justify-end ">
+          <button onClick={handleLeft}>Left</button>
+          <button onClick={handleRight}>Right</button>
+        </div>
+      </div>
     </div>
   );
 };
