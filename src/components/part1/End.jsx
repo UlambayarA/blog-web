@@ -1,10 +1,10 @@
 export const End = () => {
   return (
-    <div className="bg-[#E8E8EA] w-full h-auto flex justify-center items-center">
-      <div className="container grid grid-cols-3 w-[1216px] h-auto  justify-between gap-[25px]">
-        <div className="flex gap-[20px]">
+    <div className="bg-[#E8E8EA] w-full h-auto flex justify-center items-center ">
+      <div className="container   h-auto  justify-between gap-[25px]">
+        <div className="flex justify-between mt-[100px] gap-[20px]">
           <div>
-            <div className="max-w-[280px] w-full flex ">
+            <div className="max-w-[280px] w-full flex flex-col  ">
               <div className="text-[18px] font-semibold leading-[28px]">
                 About
               </div>
@@ -129,7 +129,7 @@ export const End = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="flex justify-between">
           <div className="flex">
             <div>b</div>
             <div>
@@ -137,7 +137,7 @@ export const End = () => {
               <div>all rights reserved</div>
             </div>
           </div>
-          <div></div>
+          <div>blabla</div>
         </div>
       </div>
     </div>
